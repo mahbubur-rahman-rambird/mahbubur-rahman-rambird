@@ -33,7 +33,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.rambird.model.Owner;
 import com.rambird.model.Pet;
 import com.rambird.model.PetType;
-import com.rambird.service.ClinicService;
+import com.rambird.service.RambirdService;
 
 /**
  * @author Juergen Hoeller
@@ -44,17 +44,17 @@ import com.rambird.service.ClinicService;
 @SessionAttributes("pet")
 public class PetController {
 
-    private final ClinicService clinicService;
+    private final RambirdService rambirdService;
 
 
     @Autowired
-    public PetController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public PetController(RambirdService rambirdService) {
+        this.rambirdService = rambirdService;
     }
 
     @ModelAttribute("types")
     public Collection<PetType> populatePetTypes() {
-        return this.clinicService.findPetTypes();
+        return this.rambirdService.findPetTypes();
     }
 
     @InitBinder
@@ -64,7 +64,7 @@ public class PetController {
 
     @RequestMapping(value = "/owners/{ownerId}/pets/new", method = RequestMethod.GET)
     public String initCreationForm(@PathVariable("ownerId") int ownerId, Model model) {
-        Owner owner = this.clinicService.findOwnerById(ownerId);
+        Owner owner = this.rambirdService.findOwnerById(ownerId);
         Pet pet = new Pet();
         owner.addPet(pet);
         model.addAttribute("pet", pet);
@@ -77,7 +77,7 @@ public class PetController {
         if (result.hasErrors()) {
             return "pets/createOrUpdatePetForm";
         } else {
-            this.clinicService.savePet(pet);
+            this.rambirdService.savePet(pet);
             status.setComplete();
             return "redirect:/owners/{ownerId}";
         }
@@ -85,7 +85,7 @@ public class PetController {
 
     @RequestMapping(value = "/owners/*/pets/{petId}/edit", method = RequestMethod.GET)
     public String initUpdateForm(@PathVariable("petId") int petId, Model model) {
-        Pet pet = this.clinicService.findPetById(petId);
+        Pet pet = this.rambirdService.findPetById(petId);
         model.addAttribute("pet", pet);
         return "pets/createOrUpdatePetForm";
     }
@@ -97,7 +97,7 @@ public class PetController {
         if (result.hasErrors()) {
             return "pets/createOrUpdatePetForm";
         } else {
-            this.clinicService.savePet(pet);
+            this.rambirdService.savePet(pet);
             status.setComplete();
             return "redirect:/owners/{ownerId}";
         }

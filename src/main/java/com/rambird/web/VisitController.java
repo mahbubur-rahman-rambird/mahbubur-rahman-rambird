@@ -32,7 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rambird.model.Pet;
 import com.rambird.model.Visit;
-import com.rambird.service.ClinicService;
+import com.rambird.service.RambirdService;
 
 /**
  * @author Juergen Hoeller
@@ -44,12 +44,12 @@ import com.rambird.service.ClinicService;
 @SessionAttributes("visit")
 public class VisitController {
 
-    private final ClinicService clinicService;
+    private final RambirdService rambirdService;
 
 
     @Autowired
-    public VisitController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VisitController(RambirdService rambirdService) {
+        this.rambirdService = rambirdService;
     }
 
     @InitBinder
@@ -59,7 +59,7 @@ public class VisitController {
 
     @RequestMapping(value = "/owners/*/pets/{petId}/visits/new", method = RequestMethod.GET)
     public String initNewVisitForm(@PathVariable("petId") int petId, Model model) {
-        Pet pet = this.clinicService.findPetById(petId);
+        Pet pet = this.rambirdService.findPetById(petId);
         Visit visit = new Visit();
         pet.addVisit(visit);
         model.addAttribute("visit", visit);
@@ -71,7 +71,7 @@ public class VisitController {
         if (result.hasErrors()) {
             return "pets/createOrUpdateVisitForm";
         } else {
-            this.clinicService.saveVisit(visit);
+            this.rambirdService.saveVisit(visit);
             status.setComplete();
             return "redirect:/owners/{ownerId}";
         }
@@ -80,7 +80,7 @@ public class VisitController {
     @RequestMapping(value = "/owners/*/pets/{petId}/visits", method = RequestMethod.GET)
     public ModelAndView showVisits(@PathVariable int petId) {
         ModelAndView mav = new ModelAndView("visitList");
-        mav.addObject("visits", this.clinicService.findPetById(petId).getVisits());
+        mav.addObject("visits", this.rambirdService.findPetById(petId).getVisits());
         return mav;
     }
 

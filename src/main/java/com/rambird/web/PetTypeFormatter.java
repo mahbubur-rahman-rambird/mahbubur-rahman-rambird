@@ -24,7 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 
 import com.rambird.model.PetType;
-import com.rambird.service.ClinicService;
+import com.rambird.service.RambirdService;
 
 /**
  * Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have
@@ -40,12 +40,12 @@ import com.rambird.service.ClinicService;
  */
 public class PetTypeFormatter implements Formatter<PetType> {
 
-    private final ClinicService clinicService;
+    private final RambirdService rambirdService;
 
 
     @Autowired
-    public PetTypeFormatter(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public PetTypeFormatter(RambirdService rambirdService) {
+        this.rambirdService = rambirdService;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class PetTypeFormatter implements Formatter<PetType> {
 
     @Override
     public PetType parse(String text, Locale locale) throws ParseException {
-        Collection<PetType> findPetTypes = this.clinicService.findPetTypes();
+        Collection<PetType> findPetTypes = this.rambirdService.findPetTypes();
         for (PetType type : findPetTypes) {
             if (type.getName().equals(text)) {
                 return type;

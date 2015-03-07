@@ -21,7 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rambird.model.Vets;
-import com.rambird.service.ClinicService;
+import com.rambird.service.RambirdService;
 
 /**
  * @author Juergen Hoeller
@@ -32,12 +32,12 @@ import com.rambird.service.ClinicService;
 @Controller
 public class VetController {
 
-    private final ClinicService clinicService;
+    private final RambirdService rambirdService;
 
 
     @Autowired
-    public VetController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public VetController(RambirdService rambirdService) {
+        this.rambirdService = rambirdService;
     }
 
     @RequestMapping("/vets")
@@ -45,7 +45,7 @@ public class VetController {
         // Here we are returning an object of type 'Vets' rather than a collection of Vet objects 
         // so it is simpler for Object-Xml mapping
         Vets vets = new Vets();
-        vets.getVetList().addAll(this.clinicService.findVets());
+        vets.getVetList().addAll(this.rambirdService.findVets());
         model.addAttribute("vets", vets);
         return "vets/vetList";
     }

@@ -33,7 +33,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rambird.model.Owner;
-import com.rambird.service.ClinicService;
+import com.rambird.service.RambirdService;
 
 /**
  * @author Juergen Hoeller
@@ -45,12 +45,12 @@ import com.rambird.service.ClinicService;
 @SessionAttributes(types = Owner.class)
 public class OwnerController {
 
-    private final ClinicService clinicService;
+    private final RambirdService rambirdService;
 
 
     @Autowired
-    public OwnerController(ClinicService clinicService) {
-        this.clinicService = clinicService;
+    public OwnerController(RambirdService rambirdService) {
+        this.rambirdService = rambirdService;
     }
 
     @InitBinder
@@ -70,7 +70,7 @@ public class OwnerController {
         if (result.hasErrors()) {
             return "owners/createOrUpdateOwnerForm";
         } else {
-            this.clinicService.saveOwner(owner);
+            this.rambirdService.saveOwner(owner);
             status.setComplete();
             return "redirect:/owners/" + owner.getId();
         }
@@ -91,7 +91,7 @@ public class OwnerController {
         }
 
         // find owners by last name
-        Collection<Owner> results = this.clinicService.findOwnerByLastName(owner.getLastName());
+        Collection<Owner> results = this.rambirdService.findOwnerByLastName(owner.getLastName());
         if (results.size() < 1) {
             // no owners found
             result.rejectValue("lastName", "notFound", "not found");
@@ -110,7 +110,7 @@ public class OwnerController {
 
     @RequestMapping(value = "/owners/{ownerId}/edit", method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("ownerId") int ownerId, Model model) {
-        Owner owner = this.clinicService.findOwnerById(ownerId);
+        Owner owner = this.rambirdService.findOwnerById(ownerId);
         model.addAttribute(owner);
         return "owners/createOrUpdateOwnerForm";
     }
@@ -120,7 +120,7 @@ public class OwnerController {
         if (result.hasErrors()) {
             return "owners/createOrUpdateOwnerForm";
         } else {
-            this.clinicService.saveOwner(owner);
+            this.rambirdService.saveOwner(owner);
             status.setComplete();
             return "redirect:/owners/{ownerId}";
         }
@@ -135,7 +135,7 @@ public class OwnerController {
     @RequestMapping("/owners/{ownerId}")
     public ModelAndView showOwner(@PathVariable("ownerId") int ownerId) {
         ModelAndView mav = new ModelAndView("owners/ownerDetails");
-        mav.addObject(this.clinicService.findOwnerById(ownerId));
+        mav.addObject(this.rambirdService.findOwnerById(ownerId));
         return mav;
     }
 
