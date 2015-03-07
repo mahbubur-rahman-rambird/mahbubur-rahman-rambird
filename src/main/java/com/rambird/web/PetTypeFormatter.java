@@ -24,11 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.Formatter;
 
 import com.rambird.model.PetType;
-<<<<<<< HEAD
-import com.rambird.service.RambirdService;
-=======
 import com.rambird.service.ClinicService;
->>>>>>> origin/master
 
 /**
  * Instructs Spring MVC on how to parse and print elements of type 'PetType'. Starting from Spring 3.0, Formatters have
@@ -44,19 +40,11 @@ import com.rambird.service.ClinicService;
  */
 public class PetTypeFormatter implements Formatter<PetType> {
 
-<<<<<<< HEAD
-    private final RambirdService clinicService;
-
-
-    @Autowired
-    public PetTypeFormatter(RambirdService clinicService) {
-=======
     private final ClinicService clinicService;
 
 
     @Autowired
     public PetTypeFormatter(ClinicService clinicService) {
->>>>>>> origin/master
         this.clinicService = clinicService;
     }
 

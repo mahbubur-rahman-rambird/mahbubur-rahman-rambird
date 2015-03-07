@@ -33,11 +33,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.rambird.model.Owner;
-<<<<<<< HEAD
-import com.rambird.service.RambirdService;
-=======
 import com.rambird.service.ClinicService;
->>>>>>> origin/master
 
 /**
  * @author Juergen Hoeller
@@ -49,19 +45,11 @@ import com.rambird.service.ClinicService;
 @SessionAttributes(types = Owner.class)
 public class OwnerController {
 
-<<<<<<< HEAD
-    private final RambirdService clinicService;
-
-
-    @Autowired
-    public OwnerController(RambirdService clinicService) {
-=======
     private final ClinicService clinicService;
 
 
     @Autowired
     public OwnerController(ClinicService clinicService) {
->>>>>>> origin/master
         this.clinicService = clinicService;
     }
 

@@ -21,11 +21,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.rambird.model.Vets;
-<<<<<<< HEAD
-import com.rambird.service.RambirdService;
-=======
 import com.rambird.service.ClinicService;
->>>>>>> origin/master
 
 /**
  * @author Juergen Hoeller
@@ -36,19 +32,11 @@ import com.rambird.service.ClinicService;
 @Controller
 public class VetController {
 
-<<<<<<< HEAD
-    private final RambirdService clinicService;
-
-
-    @Autowired
-    public VetController(RambirdService clinicService) {
-=======
     private final ClinicService clinicService;
 
 
     @Autowired
     public VetController(ClinicService clinicService) {
->>>>>>> origin/master
         this.clinicService = clinicService;
     }
 

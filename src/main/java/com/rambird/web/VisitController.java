@@ -32,11 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rambird.model.Pet;
 import com.rambird.model.Visit;
-<<<<<<< HEAD
-import com.rambird.service.RambirdService;
-=======
 import com.rambird.service.ClinicService;
->>>>>>> origin/master
 
 /**
  * @author Juergen Hoeller
@@ -48,19 +44,11 @@ import com.rambird.service.ClinicService;
 @SessionAttributes("visit")
 public class VisitController {
 
-<<<<<<< HEAD
-    private final RambirdService clinicService;
-
-
-    @Autowired
-    public VisitController(RambirdService clinicService) {
-=======
     private final ClinicService clinicService;
 
 
     @Autowired
     public VisitController(ClinicService clinicService) {
->>>>>>> origin/master
         this.clinicService = clinicService;
     }
 
