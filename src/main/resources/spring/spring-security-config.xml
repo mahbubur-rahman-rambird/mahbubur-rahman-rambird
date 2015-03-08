@@ -8,14 +8,17 @@
 	http://www.springframework.org/schema/security/spring-security-3.2.xsd">
  
 	<http auto-config="true">
-		<intercept-url pattern="/owners**" access="ROLE_USER" />
+		<intercept-url pattern="/owners**" access="ROLE_ADMIN" />
 	</http>
  
 	<authentication-manager>
 	  <authentication-provider>
-	    <user-service>
-		<user name="sumon" password="sumon123" authorities="ROLE_USER" />
-	    </user-service>
+	  	<jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select user_name,password, enabled from myoath where user_name=?"
+		  authorities-by-username-query=
+		    "select username, user_role from user_roles where username =?  " />
+	    <password-encoder hash="md5"/>
 	  </authentication-provider>
 	</authentication-manager>
  
