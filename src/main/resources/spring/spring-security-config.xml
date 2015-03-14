@@ -13,7 +13,7 @@
  
 	<authentication-manager>
 	  <authentication-provider>
-	  	<jdbc-user-service data-source-ref="dataSource"
+	  	<jdbc-user-service data-source-ref="dataSourceAuth"
 		  users-by-username-query=
 		    "select user_name,password, enabled from myoath where user_name=?"
 		  authorities-by-username-query=

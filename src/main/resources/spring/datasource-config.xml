@@ -20,9 +20,14 @@
     <context:property-placeholder location="classpath:spring/data-access.properties"/>
 
     <!-- DataSource configuration for Apache Commons DBCP. -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+    <bean id="dataSourceAuth" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
           p:driverClassName="${jdbc.driverClassName}" p:url="${jdbc.url}"
           p:username="${jdbc.username}" p:password="${jdbc.password}"/>
+    <!-- DataSource configuration for Apache Commons DBCP. -->
+    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"
+          p:driverClassName="${jdbc.miles.driverClassName}" p:url="${jdbc.miles.url}"
+          p:username="${jdbc.miles.username}" p:password="${jdbc.miles.password}"/>
+
 
     <!-- JNDI DataSource for JEE environments -->
     <!--
