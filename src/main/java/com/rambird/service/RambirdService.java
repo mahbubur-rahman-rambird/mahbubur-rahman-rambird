@@ -19,6 +19,7 @@ import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
 
+import com.rambird.model.Category;
 import com.rambird.model.Owner;
 import com.rambird.model.Pet;
 import com.rambird.model.PetType;
@@ -48,6 +49,10 @@ public interface RambirdService {
 
     public void saveOwner(Owner owner) throws DataAccessException;
 
+    public void saveCategory(Category category) throws DataAccessException;
+
+    public Category findCategoryById(int id) throws DataAccessException;
+    
     Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
     public User authUser(String userName, String password) throws DataAccessException;
 

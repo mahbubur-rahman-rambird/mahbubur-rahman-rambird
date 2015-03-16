@@ -23,12 +23,14 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.rambird.model.Category;
 import com.rambird.model.Owner;
 import com.rambird.model.Pet;
 import com.rambird.model.PetType;
 import com.rambird.model.User;
 import com.rambird.model.Vet;
 import com.rambird.model.Visit;
+import com.rambird.repository.MilesCatgRepository;
 import com.rambird.repository.OwnerRepository;
 import com.rambird.repository.PetRepository;
 import com.rambird.repository.UserRepository;
@@ -49,16 +51,17 @@ public class RambirdServiceImpl implements RambirdService {
     private OwnerRepository ownerRepository;
     private VisitRepository visitRepository;
     private UserRepository userRepository;
-   
+    private MilesCatgRepository milesCatgRepository;
 
     @Autowired
     public RambirdServiceImpl(PetRepository petRepository, VetRepository vetRepository, OwnerRepository ownerRepository, VisitRepository visitRepository, 
-    		UserRepository userRepository) {
+    		UserRepository userRepository, MilesCatgRepository milesCatgRepository) {
         this.petRepository = petRepository;
         this.vetRepository = vetRepository;
         this.ownerRepository = ownerRepository;
         this.visitRepository = visitRepository;
         this.userRepository = userRepository;
+        this.milesCatgRepository = milesCatgRepository;
     }
 
     @Override
@@ -91,6 +94,17 @@ public class RambirdServiceImpl implements RambirdService {
         ownerRepository.save(owner);
     }
 
+    @Override
+    @Transactional
+    public void saveCategory(Category category) throws DataAccessException {
+        milesCatgRepository.save(category);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Category findCategoryById(int id) throws DataAccessException {
+        return milesCatgRepository.findById(id);
+    }
 
     @Override
     @Transactional
