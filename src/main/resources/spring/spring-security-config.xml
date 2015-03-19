@@ -9,6 +9,7 @@
  
 	<http auto-config="true">
 		<intercept-url pattern="/owners**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/miles/**" access="ROLE_ADMIN" />
 	</http>
  
 	<authentication-manager>

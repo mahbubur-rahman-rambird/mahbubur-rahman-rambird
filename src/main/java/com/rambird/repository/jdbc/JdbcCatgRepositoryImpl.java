@@ -15,9 +15,7 @@
  */
 package com.rambird.repository.jdbc;
 
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -30,12 +28,13 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.jdbc.core.simple.ParameterizedBeanPropertyRowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 import org.springframework.orm.ObjectRetrievalFailureException;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.rambird.model.Category;
 import com.rambird.model.Owner;
 import com.rambird.model.Pet;
-import com.rambird.model.PetType;
 import com.rambird.model.Visit;
 import com.rambird.repository.MilesCatgRepository;
 import com.rambird.repository.OwnerRepository;
@@ -94,6 +93,9 @@ public class JdbcCatgRepositoryImpl implements MilesCatgRepository {
     @Override
     public void save(Category category) throws DataAccessException {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(category);
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        category.setUserName(auth.getName()); //get logged in username
+   
         if (category.isNew()) {
             Number newKey = this.insertMileCatg.executeAndReturnKey(parameterSource);
             category.setCatgid(newKey.intValue());

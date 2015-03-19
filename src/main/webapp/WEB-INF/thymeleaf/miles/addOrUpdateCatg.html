@@ -72,13 +72,7 @@
                 <span class="help-inline" th:errors="*{catgRank}">[error]</span>
             </div>
         </div>
-        <div class="control-group" th:classappend="${#fields.hasErrors('userName')} ? error">
-            <label class="control-label">User name</label>
-            <div class="controls">
-                <input type="text" th:field="*{userName}" />
-                <span class="help-inline" th:errors="*{userName}">[error]</span>
-            </div>
-        </div>
+
 
         <div class="control-group" th:classappend="${#fields.hasErrors('home')} ? error">
             <label class="control-label">Home</label>

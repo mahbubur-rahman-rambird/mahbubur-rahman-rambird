@@ -51,7 +51,6 @@ public class Category {
     private String catgLabel;
 
     @Column(name = "user_name")
-    @NotEmpty
     private String userName;
 
     @Column(name = "home")
