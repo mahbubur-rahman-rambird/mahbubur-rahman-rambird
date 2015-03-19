@@ -30,10 +30,13 @@
  */
 package com.rambird.repository;
 
+import java.util.Collection;
+
 import org.springframework.dao.DataAccessException;
 
 import com.rambird.model.BaseEntity;
 import com.rambird.model.Category;
+import com.rambird.model.Owner;
 
 /**
  * Repository class for <code>Owner</code> domain objects All method names are compliant with Spring Data naming
@@ -65,5 +68,7 @@ public interface MilesCatgRepository {
      * @see BaseEntity#isNew
      */
     void save(Category category) throws DataAccessException;
+    
+    Collection<Category> findAll() throws DataAccessException;
 
 }

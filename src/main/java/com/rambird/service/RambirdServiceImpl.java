@@ -81,6 +81,13 @@ public class RambirdServiceImpl implements RambirdService {
     public Owner findOwnerById(int id) throws DataAccessException {
         return ownerRepository.findById(id);
     }
+    
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<Category> findAllCategory()throws DataAccessException {
+    	return milesCatgRepository.findAll();
+    }
 
     @Override
     @Transactional(readOnly = true)

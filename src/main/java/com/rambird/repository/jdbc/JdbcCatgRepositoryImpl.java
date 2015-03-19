@@ -15,7 +15,9 @@
  */
 package com.rambird.repository.jdbc;
 
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sql.DataSource;
@@ -87,6 +89,22 @@ public class JdbcCatgRepositoryImpl implements MilesCatgRepository {
             throw new ObjectRetrievalFailureException(Category.class, id);
         }
         return category;
+    }
+    /**
+     * Loads {@link Owner Owners} from the data store by last name, returning all owners whose last name <i>starts</i> with
+     * the given name; also loads the {@link Pet Pets} and {@link Visit Visits} for the corresponding owners, if not
+     * already loaded.
+     */
+    @Override
+    public Collection<Category> findAll() throws DataAccessException {
+    	Map<String, Object> params = new HashMap<String, Object>();
+    	List<Category> categories = this.namedParameterJdbcTemplate.query(
+                "SELECT catgid, catg, catg_label, user_name, home, catg_rank FROM category order by catgid desc",
+                params,
+                ParameterizedBeanPropertyRowMapper.newInstance(Category.class)
+        );
+        
+        return categories;
     }
 
 

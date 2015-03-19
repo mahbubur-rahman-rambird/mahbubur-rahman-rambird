@@ -15,6 +15,8 @@
  */
 package com.rambird.web;
 
+import java.util.Collection;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +75,18 @@ public class CatgController {
             status.setComplete();
             return "redirect:/miles/" + category.getCatgid();
         }
+    }
+    @RequestMapping(value = "/miles/catgList", method = RequestMethod.GET)
+    public ModelAndView processFindForm( Model model) {
+    	ModelAndView mav = new ModelAndView("miles/catgList");
+    	// find all categories
+        Collection<Category> results = this.rambirdService.findAllCategory();
+        if (results.size() > 1) {
+            // multiple owners found
+        	mav.addObject("selections", results);
+        }
+        return mav;
+
     }
 
     /**

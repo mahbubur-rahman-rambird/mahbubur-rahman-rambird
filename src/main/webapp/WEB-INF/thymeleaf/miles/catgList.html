@@ -85,21 +85,19 @@
             <tr th:each="category : ${selections}">
                 <td>
                     <a href="catgDetails.html"
-                       th:href="@{|/miles/${category.id}|}"
-                       th:text="|${owner.firstName} ${owner.lastName}|">Mary Smith</a>
+                       th:href="@{|/miles/${category.catgid}|}"
+                       th:text="${category.catg}">Mary Smith</a>
                 </td>
-                <td th:text="${owner.address}">45, Oxford Street</td>
-                <td th:text="${owner.city}">Cambridge</td>
-                <td th:text="${owner.telephone}">555-555-555</td>
-                <td>
-                    <span th:each="pet : ${owner.pets}" th:text="${pet.name}" th:remove="tag">
-                       Rob&nbsp;
-                    </span>
-                </td>
+                <td th:text="${category.catgLabel}">45, Oxford Street</td>
+                <td th:text="${category.catgRank}">Cambridge</td>
+                <td th:text="${category.home}">555-555-555</td>
             </tr>
         </tbody>
     </table>    
-
+   <div class="form-actions">
+    	<a th:href="@{'new'}" href="../miles/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a>
+   </div>  	
+   
     
     <table th:replace="fragments/footer :: footer" class="footer">
     

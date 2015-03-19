@@ -53,7 +53,10 @@ public interface RambirdService {
 
     public Category findCategoryById(int id) throws DataAccessException;
     
-    Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
+    public Collection<Category> findAllCategory() throws DataAccessException;
+    
+    public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
+    
     public User authUser(String userName, String password) throws DataAccessException;
 
 }

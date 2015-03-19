@@ -66,7 +66,7 @@
             <td> 
             	<a th:href="@{|${category.catgid}/edit.html|}" href="./addOrUpdateCategory.html" class="btn btn-info">Edit Category</a></td>
             <td>
-            	<a th:href="@{miles/new.html}" href="../miles/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a></td>
+            	<a th:href="@{'new'}" href="../miles/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a></td>
         </tr>
     </table>
         <table th:replace="fragments/footer :: footer" class="footer">
