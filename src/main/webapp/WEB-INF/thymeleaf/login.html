@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head th:replace="fragments/headTag :: headTag">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Rambird :: you forget, I will remember!</title>
+
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/2.3.0/css/bootstrap.min.css}" rel="stylesheet" />
+    <link href="../../resources/css/petclinic.css"
+          th:href="@{/resources/css/petclinic.css}" rel="stylesheet" />
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+            th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
+            th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
+    
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
+          th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet" />
+</head>
+
+<body>
+<div class="container">
+
+        <form name="f" th:action="@{/j_spring_security_check}" method="post">               
+            <fieldset>
+                <legend>Please Login</legend>
+                <div th:if="${param.error}" class="alert alert-error">    
+                    Invalid username and password.
+                </div>
+                <div th:if="${param.logout}" class="alert alert-success"> 
+                    You have been logged out.
+                </div>
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username"/>        
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password"/>    
+                <div class="form-actions">
+                    <button type="submit" class="btn">Log in</button>
+                </div>
+            </fieldset>
+        </form>
+
+    <!--  
+    <img src="../../resources/images/pets.png" th:src="@{/resources/images/pets.png}" />
+	-->
+    <table th:replace="fragments/footer :: footer" class="footer">
+        <tr>
+            <td></td>
+            <td align="right">
+               <!--  
+               <img src="../../resources/images/springsource-logo.png"
+                    th:src="@{/resources/images/springsource-logo.png}"
+                    alt="Sponsored by SpringSource" />
+                -->
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+
+</html>

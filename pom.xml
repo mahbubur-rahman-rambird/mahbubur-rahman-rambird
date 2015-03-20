@@ -75,7 +75,7 @@
         <mysql.version>5.1.22</mysql.version>
         
         <!-- Spring security -->
-        <spring.security.version>3.2.3.RELEASE</spring.security.version>
+        <spring.security.version>3.2.6.RELEASE</spring.security.version>
         
     </properties>
 
