@@ -85,7 +85,7 @@
             <tr th:each="category : ${selections}">
                 <td>
                     <a href="catgDetails.html"
-                       th:href="@{|/miles/${category.catgid}|}"
+                       th:href="@{|/categories/${category.catgid}|}"
                        th:text="${category.catg}">Mary Smith</a>
                 </td>
                 <td th:text="${category.catgLabel}">45, Oxford Street</td>
@@ -95,7 +95,7 @@
         </tbody>
     </table>    
    <div class="form-actions">
-    	<a th:href="@{'new'}" href="../miles/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a>
+    	<a th:href="@{'new'}" href="../categories/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a>
    </div>  	
    
     

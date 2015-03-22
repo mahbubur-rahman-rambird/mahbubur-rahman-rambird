@@ -43,16 +43,16 @@
             
     </div>
 
-    <h2>Category details</h2>
+    <h2>categories details</h2>
 
     <table class="table table-striped" style="width:600px;">
         <tr>
-            <th>Category code</th>
-            <td><b th:text="${category.catg}">[Category]</b></td>
+            <th>categories code</th>
+            <td><b th:text="${category.catg}">[categories]</b></td>
         </tr>
         <tr>
-            <th>Category label</th>
-            <td th:text="${category.catgLabel}">[Category label]</td>
+            <th>categories label</th>
+            <td th:text="${category.catgLabel}">[categories label]</td>
         </tr>
         <tr>
             <th>Rank</th>
@@ -64,9 +64,9 @@
         </tr>
          <tr>
             <td> 
-            	<a th:href="@{|${category.catgid}/edit.html|}" href="./addOrUpdateCategory.html" class="btn btn-info">Edit Category</a></td>
+            	<a th:href="@{|${category.catgid}/edit.html|}" href="./addOrUpdateCategory.html" class="btn btn-info">Edit categories</a></td>
             <td>
-            	<a th:href="@{'new'}" href="../miles/addOrUpdateCatg.html"  class="btn btn-success">Add New Category</a></td>
+            	<a th:href="@{'new'}" href="../categories/addOrUpdateCatg.html"  class="btn btn-success">Add New category</a></td>
         </tr>
     </table>
         <table th:replace="fragments/footer :: footer" class="footer">

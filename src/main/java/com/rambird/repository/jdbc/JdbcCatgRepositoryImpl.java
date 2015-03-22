@@ -119,7 +119,7 @@ public class JdbcCatgRepositoryImpl implements MilesCatgRepository {
             category.setCatgid(newKey.intValue());
         } else {
             this.namedParameterJdbcTemplate.update(
-                    "UPDATE category SET catg=:category, catg_label=:catgLabel WHERE catgid=:catgid",
+                    "UPDATE category SET catg=:catg, catg_label=:catgLabel, home=:home WHERE catgid=:catgid",
                     parameterSource);
         }
     }

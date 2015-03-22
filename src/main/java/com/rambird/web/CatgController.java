@@ -59,26 +59,26 @@ public class CatgController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @RequestMapping(value = "/miles/new", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories/new", method = RequestMethod.GET)
     public String initCreationForm(Model model) {
         Category category = new Category();
         model.addAttribute(category);
-        return "miles/addOrUpdateCatg";
+        return "categories/addOrUpdateCatg";
     }
 
-    @RequestMapping(value = "/miles/new", method = RequestMethod.POST)
+    @RequestMapping(value = "/categories/new", method = RequestMethod.POST)
     public String processCreationForm(@Valid Category category, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
-            return "miles/addOrUpdateCatg";
+            return "categories/addOrUpdateCatg";
         } else {
             this.rambirdService.saveCategory(category);
             status.setComplete();
-            return "redirect:/miles/" + category.getCatgid();
+            return "redirect:/categories/" + category.getCatgid();
         }
     }
-    @RequestMapping(value = "/miles/catgList", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories/catgList", method = RequestMethod.GET)
     public ModelAndView processFindForm( Model model) {
-    	ModelAndView mav = new ModelAndView("miles/catgList");
+    	ModelAndView mav = new ModelAndView("categories/catgList");
     	// find all categories
         Collection<Category> results = this.rambirdService.findAllCategory();
         if (results.size() > 1) {
@@ -95,28 +95,28 @@ public class CatgController {
      * @param ownerId the ID of the owner to display
      * @return a ModelMap with the model attributes for the view
      */
-    @RequestMapping("/miles/{catgid}")
+    @RequestMapping("/categories/{catgid}")
     public ModelAndView showCatg(@PathVariable("catgid") int catgid) {
-        ModelAndView mav = new ModelAndView("miles/catgDetails");
+        ModelAndView mav = new ModelAndView("categories/catgDetails");
         mav.addObject(this.rambirdService.findCategoryById(catgid));
         return mav;
     }
 
-    @RequestMapping(value = "/miles/{catgid}/edit", method = RequestMethod.GET)
+    @RequestMapping(value = "/categories/{catgid}/edit", method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("catgid") int catgid, Model model) {
         Category category = this.rambirdService.findCategoryById(catgid);
         model.addAttribute(category);
-        return "miles/addOrUpdateCatg";
+        return "categories/addOrUpdateCatg";
     }
 
-    @RequestMapping(value = "/miles/{catgid}/edit", method = RequestMethod.PUT)
+    @RequestMapping(value = "/categories/{catgid}/edit", method = RequestMethod.PUT)
     public String processUpdateOwnerForm(@Valid Category category, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
-            return "miles/addOrUpdateCatg";
+            return "categories/addOrUpdateCatg";
         } else {
             this.rambirdService.saveCategory(category);;
             status.setComplete();
-            return "redirect:/miles/{catgid}";
+            return "redirect:/categories/{catgid}";
         }
     }   
    
