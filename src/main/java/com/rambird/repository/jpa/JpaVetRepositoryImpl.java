@@ -23,8 +23,8 @@ import javax.persistence.PersistenceContext;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 
-import com.rambird.model.Vet;
-import com.rambird.repository.VetRepository;
+import com.rambird.miles.model.Vet;
+import com.rambird.miles.repository.VetRepository;
 
 /**
  * JPA implementation of the {@link VetRepository} interface.

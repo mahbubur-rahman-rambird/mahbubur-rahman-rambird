@@ -16,7 +16,7 @@
     <import resource="datasource-config.xml"/>
 
     <context:component-scan
-            base-package="com.rambird.service"/>
+            base-package="com.rambird.miles.service"/>
 
     <!-- Configurer that replaces ${...} placeholders with values from a properties file -->
     <!-- (in this case, JDBC-related settings for the JPA EntityManager definition below) -->
@@ -66,7 +66,7 @@
             <constructor-arg ref="dataSource"/>
         </bean>
 
-        <context:component-scan base-package="com.rambird.repository.jdbc"/>
+        <context:component-scan base-package="com.rambird.miles.repository.jdbc"/>
     </beans>
 
     <beans profile="jpa">
@@ -75,11 +75,11 @@
             EntityManager will be auto-injected due to @PersistenceContext.
             PersistenceExceptions will be auto-translated due to @Repository.
         -->
-        <context:component-scan base-package="com.rambird.repository.jpa"/>
+        <context:component-scan base-package="com.rambird.miles.repository.jpa"/>
     </beans>
 
     <beans profile="spring-data-jpa">
-        <jpa:repositories base-package="com.rambird.repository.springdatajpa"/>
+        <jpa:repositories base-package="com.rambird.miles.repository.springdatajpa"/>
 
         <!-- Custom configuration for the custom implementation based on JPA -->
         <bean id="owerRepository"

@@ -13,18 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rambird.repository.springdatajpa;
+package com.rambird.miles.repository.jdbc;
 
-import org.springframework.data.repository.Repository;
-
-import com.rambird.miles.model.Visit;
-import com.rambird.miles.repository.VisitRepository;
+import com.rambird.miles.model.Pet;
 
 /**
- * Spring Data JPA specialization of the {@link VisitRepository} interface
+ * Subclass of Pet that carries temporary id properties which are only relevant for a JDBC implmentation of the
+ * ClinicService.
  *
- * @author Michael Isvy
- * @since 15.1.2013
+ * @author Juergen Hoeller
+ * @see JdbcClinicImpl
  */
-public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
+class JdbcPet extends Pet {
+
+    private int typeId;
+
+    private int ownerId;
+
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public int getTypeId() {
+        return this.typeId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
+    public int getOwnerId() {
+        return this.ownerId;
+    }
+
 }

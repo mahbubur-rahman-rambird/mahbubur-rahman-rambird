@@ -21,8 +21,8 @@ import static org.junit.Assert.assertNull;
 import org.junit.Test;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rambird.model.Owner;
-import com.rambird.model.Pet;
+import com.rambird.miles.model.Owner;
+import com.rambird.miles.model.Pet;
 
 /**
  * JUnit test for the {@link Owner} class.

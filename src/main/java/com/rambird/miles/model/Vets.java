@@ -1,4 +1,5 @@
 /*
+/*
  * Copyright 2002-2013 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -13,18 +14,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rambird.repository.springdatajpa;
+package com.rambird.miles.model;
 
-import org.springframework.data.repository.Repository;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.rambird.miles.model.Visit;
-import com.rambird.miles.repository.VisitRepository;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
- * Spring Data JPA specialization of the {@link VisitRepository} interface
+ * Simple domain object representing a list of veterinarians. Mostly here to be used for the 'vets' {@link
+ * org.springframework.web.servlet.view.xml.MarshallingView}.
  *
- * @author Michael Isvy
- * @since 15.1.2013
+ * @author Arjen Poutsma
  */
-public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
+@XmlRootElement
+public class Vets {
+
+    private List<Vet> vets;
+
+    @XmlElement
+    public List<Vet> getVetList() {
+        if (vets == null) {
+            vets = new ArrayList<Vet>();
+        }
+        return vets;
+    }
+
 }

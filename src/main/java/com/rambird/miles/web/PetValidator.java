@@ -13,27 +13,28 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rambird.repository.springdatajpa;
+package com.rambird.miles.web;
 
-import java.util.List;
-
-import org.springframework.dao.DataAccessException;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.Repository;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 
 import com.rambird.miles.model.Pet;
-import com.rambird.miles.model.PetType;
-import com.rambird.miles.repository.PetRepository;
 
 /**
- * Spring Data JPA specialization of the {@link PetRepository} interface
+ * <code>Validator</code> for <code>Pet</code> forms.
  *
- * @author Michael Isvy
- * @since 15.1.2013
+ * @author Ken Krebs
+ * @author Juergen Hoeller
  */
-public interface SpringDataPetRepository extends PetRepository, Repository<Pet, Integer> {
+public class PetValidator {
 
-    @Override
-    @Query("SELECT ptype FROM PetType ptype ORDER BY ptype.name")
-    List<PetType> findPetTypes() throws DataAccessException;
+    public void validate(Pet pet, Errors errors) {
+        String name = pet.getName();
+        if (!StringUtils.hasLength(name)) {
+            errors.rejectValue("name", "required", "required");
+        } else if (pet.isNew() && pet.getOwner().getPet(name, true) != null) {
+            errors.rejectValue("name", "duplicate", "already exists");
+        }
+    }
+
 }

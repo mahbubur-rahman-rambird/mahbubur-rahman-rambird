@@ -13,18 +13,18 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.rambird.repository.springdatajpa;
+package com.rambird.miles.model;
 
-import org.springframework.data.repository.Repository;
-
-import com.rambird.miles.model.Visit;
-import com.rambird.miles.repository.VisitRepository;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
- * Spring Data JPA specialization of the {@link VisitRepository} interface
+ * Models a {@link Vet Vet's} specialty (for example, dentistry).
  *
- * @author Michael Isvy
- * @since 15.1.2013
+ * @author Juergen Hoeller
  */
-public interface SpringDataVisitRepository extends VisitRepository, Repository<Visit, Integer> {
+@Entity
+@Table(name = "specialties")
+public class Specialty extends NamedEntity {
+
 }

@@ -26,7 +26,7 @@
     </aop:aspectj-autoproxy>
 
     <!-- Call monitoring aspect that monitors call count and call invocation time -->
-    <bean id="callMonitor" class="com.rambird.util.CallMonitoringAspect"/>
+    <bean id="callMonitor" class="com.rambird.miles.util.CallMonitoringAspect"/>
 
     <!--
         Exporter that exposes the CallMonitoringAspect via JMX,

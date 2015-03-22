@@ -24,8 +24,8 @@ import javax.persistence.Query;
 import org.springframework.orm.hibernate3.support.OpenSessionInViewFilter;
 import org.springframework.stereotype.Repository;
 
-import com.rambird.model.Owner;
-import com.rambird.repository.OwnerRepository;
+import com.rambird.miles.model.Owner;
+import com.rambird.miles.repository.OwnerRepository;
 
 /**
  * JPA implementation of the {@link OwnerRepository} interface.

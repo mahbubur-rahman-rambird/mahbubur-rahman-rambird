@@ -17,8 +17,8 @@ package com.rambird.repository.springdatajpa;
 
 import org.springframework.data.repository.Repository;
 
-import com.rambird.model.Vet;
-import com.rambird.repository.VetRepository;
+import com.rambird.miles.model.Vet;
+import com.rambird.miles.repository.VetRepository;
 
 /**
  * Spring Data JPA specialization of the {@link VetRepository} interface

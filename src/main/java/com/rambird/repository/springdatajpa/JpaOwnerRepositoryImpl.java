@@ -23,8 +23,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.rambird.model.Owner;
-import com.rambird.repository.OwnerRepository;
+import com.rambird.miles.model.Owner;
+import com.rambird.miles.repository.OwnerRepository;
 
 /**
  * Using native JPA instead of Spring Data JPA here because of this query: "SELECT owner FROM Owner owner left join

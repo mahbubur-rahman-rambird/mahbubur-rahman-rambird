@@ -22,9 +22,9 @@ import javax.persistence.PersistenceContext;
 
 import org.springframework.stereotype.Repository;
 
-import com.rambird.model.Pet;
-import com.rambird.model.PetType;
-import com.rambird.repository.PetRepository;
+import com.rambird.miles.model.Pet;
+import com.rambird.miles.model.PetType;
+import com.rambird.miles.repository.PetRepository;
 
 /**
  * JPA implementation of the {@link PetRepository} interface.

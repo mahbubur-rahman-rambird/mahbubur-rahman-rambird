@@ -81,7 +81,7 @@
     </bean>
 
     <!-- Renders an Atom feed of the visits. Used by the BeanNameViewResolver  -->
-    <bean name="vets/vetList.atom" class="com.rambird.web.VetsAtomView"/>
+    <bean name="vets/vetList.atom" class="com.rambird.miles.web.VetsAtomView"/>
 
     <!-- Renders an XML view. Used by the BeanNameViewResolver  -->
     <bean name="vets/vetList.xml" class="org.springframework.web.servlet.view.xml.MarshallingView">
@@ -90,7 +90,7 @@
 
     <oxm:jaxb2-marshaller id="marshaller">
         <!-- Object-XML mapping declared using annotations inside 'Vets' -->
-        <oxm:class-to-be-bound name="com.rambird.model.Vets"/>
+        <oxm:class-to-be-bound name="com.rambird.miles.model.Vets"/>
     </oxm:jaxb2-marshaller>
 
 </beans>

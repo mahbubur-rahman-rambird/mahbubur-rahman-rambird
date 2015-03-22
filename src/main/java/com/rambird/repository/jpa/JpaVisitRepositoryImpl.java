@@ -23,8 +23,8 @@ import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
 
-import com.rambird.model.Visit;
-import com.rambird.repository.VisitRepository;
+import com.rambird.miles.model.Visit;
+import com.rambird.miles.repository.VisitRepository;
 
 /**
  * JPA implementation of the ClinicService interface using EntityManager.
