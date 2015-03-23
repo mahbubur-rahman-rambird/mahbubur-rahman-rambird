@@ -20,6 +20,7 @@ import java.util.Collection;
 import org.springframework.dao.DataAccessException;
 
 import com.rambird.miles.model.Category;
+import com.rambird.miles.model.Mile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
 import com.rambird.miles.model.PetType;
@@ -54,6 +55,12 @@ public interface RambirdService {
     public Category findCategoryById(int id) throws DataAccessException;
     
     public Collection<Category> findAllCategory() throws DataAccessException;
+    
+    public void saveMile(Mile mile) throws DataAccessException;
+
+    public Mile findMileById(int id) throws DataAccessException;
+    
+    public Collection<Mile> findAllMiles() throws DataAccessException;
     
     public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
     
