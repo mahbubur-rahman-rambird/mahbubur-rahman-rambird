@@ -37,15 +37,15 @@ import org.springframework.core.style.ToStringCreator;
  */
 @Entity
 @Table(name = "mymiles")
-public class Mile {
+public class MyMile {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "mileid")
 	protected Integer mileId;
 
 	@Column(name = "catg")
-    @NotEmpty
-    private String catg;
+	@NotEmpty
+	private String catg;
 
     @Column(name = "milestone")
     @NotEmpty

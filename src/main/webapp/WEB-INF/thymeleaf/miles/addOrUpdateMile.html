@@ -46,10 +46,10 @@
 
 
     <h2>
-        <span th::if="${category['new']}" th:remove="tag">New </span> Mile
+        <span th::if="${myMile['new']}" th:remove="tag">New </span> Mile
     </h2>
-    <form th:object="${mile}" th:method="${mile['new']} ? post : put" action="./mileDetails.html"
-        th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal" id="add-owner-form">
+    <form th:object="${myMile}" th:method="${myMile['new']} ? post : put" action="./mileDetails.html"
+        th:action="@{${#httpServletRequest.servletPath}}" class="form-horizontal" id="add-mile-form">
         <div class="control-group" th:classappend="${#fields.hasErrors('catg')} ? error">
             <label class="control-label">Category</label>
             <div class="controls">
@@ -73,7 +73,7 @@
             </div>
         </div>
 
-
+<!-- 
         <div class="control-group" th:classappend="${#fields.hasErrors('finishBy')} ? error">
             <label class="control-label">Finish by</label>
             <div class="controls">
@@ -81,10 +81,10 @@
                 <span class="help-inline" th:errors="*{finishBy}">[error]</span>
             </div>
         </div>
-    
+ -->    
         <div class="form-actions">
-            <button th:if="${mile['new']}" type="submit">Add Mile</button>
-            <button th:unless="${mile['new']}" type="submit">Update mile</button>
+            <button th:if="${myMile['new']}" type="submit">Add Mile</button>
+            <button th:unless="${myMile['new']}" type="submit">Update mile</button>
         </div>
     </form>
 </div>

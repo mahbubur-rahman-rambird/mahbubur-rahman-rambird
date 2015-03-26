@@ -35,7 +35,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
 
 import com.rambird.miles.model.Category;
-import com.rambird.miles.model.Mile;
+import com.rambird.miles.model.MyMile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
 import com.rambird.miles.model.Visit;
@@ -77,18 +77,18 @@ public class JdbcMileRepositoryImpl implements MileRepository {
      * for the corresponding owner, if not already loaded.
      */
     @Override
-    public Mile findById(int id) throws DataAccessException {
-        Mile mile;
+    public MyMile findById(int id) throws DataAccessException {
+        MyMile mile;
         try {
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("id", id);
             mile = this.namedParameterJdbcTemplate.queryForObject(
             		SELECT_QUERY + " WHERE mileid= :id",
                     params,
-                    ParameterizedBeanPropertyRowMapper.newInstance(Mile.class)
+                    ParameterizedBeanPropertyRowMapper.newInstance(MyMile.class)
             );
         } catch (EmptyResultDataAccessException ex) {
-            throw new ObjectRetrievalFailureException(Mile.class, id);
+            throw new ObjectRetrievalFailureException(MyMile.class, id);
         }
         return mile;
     }
@@ -98,12 +98,12 @@ public class JdbcMileRepositoryImpl implements MileRepository {
      * already loaded.
      */
     @Override
-    public Collection<Mile> findAll() throws DataAccessException {
+    public Collection<MyMile> findAll() throws DataAccessException {
     	Map<String, Object> params = new HashMap<String, Object>();
-    	List<Mile> miles = this.namedParameterJdbcTemplate.query(
+    	List<MyMile> miles = this.namedParameterJdbcTemplate.query(
                 SELECT_QUERY + " ",
                 params,
-                ParameterizedBeanPropertyRowMapper.newInstance(Mile.class)
+                ParameterizedBeanPropertyRowMapper.newInstance(MyMile.class)
         );
         
         return miles;
@@ -111,7 +111,7 @@ public class JdbcMileRepositoryImpl implements MileRepository {
 
 
     @Override
-    public void save(Mile mile) throws DataAccessException {
+    public void save(MyMile mile) throws DataAccessException {
         BeanPropertySqlParameterSource parameterSource = new BeanPropertySqlParameterSource(mile);
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         mile.setUserName(auth.getName()); //get logged in username

@@ -48,23 +48,23 @@
     <table class="table table-striped" style="width:600px;">
         <tr>
             <th>Category</th>
-            <td><b th:text="${mile.catg}">[categories]</b></td>
+            <td><b th:text="${myMile.catg}">[categories]</b></td>
         </tr>
         <tr>
             <th>Milestone</th>
-            <td th:text="${mile.milestone}">[categories label]</td>
+            <td th:text="${myMile.milestone}">[categories label]</td>
         </tr>
         <tr>
             <th>Comments</th>
-            <td th:text="${mile.comments}">[Rank]</td>
+            <td th:text="${myMile.comments}">[Rank]</td>
         </tr>
         <tr>
             <th>Priority</th>
-            <td th:text="${mile.priority}">[User name]</td>
+            <td th:text="${myMile.priority}">[User name]</td>
         </tr>
          <tr>
             <td> 
-            	<a th:href="@{|${mile.mileId}/edit.html|}" href="./addOrUpdateMile.html" class="btn btn-info">Edit Mile</a></td>
+            	<a th:href="@{|${myMile.mileId}/edit.html|}" href="./addOrUpdateMile.html" class="btn btn-info">Edit Mile</a></td>
             <td>
             	<a th:href="@{'new'}" href="../categories/addOrUpdateCatg.html"  class="btn btn-success">Add a mile</a></td>
         </tr>

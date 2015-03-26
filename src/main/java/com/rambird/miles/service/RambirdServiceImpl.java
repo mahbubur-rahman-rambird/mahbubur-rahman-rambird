@@ -24,7 +24,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.rambird.miles.model.Category;
-import com.rambird.miles.model.Mile;
+import com.rambird.miles.model.MyMile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
 import com.rambird.miles.model.PetType;
@@ -121,19 +121,19 @@ public class RambirdServiceImpl implements RambirdService {
 
     @Override
     @Transactional
-    public void saveMile(Mile mile) throws DataAccessException {
+    public void saveMile(MyMile mile) throws DataAccessException {
         mileRepository.save(mile);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Mile findMileById(int id) throws DataAccessException {
+    public MyMile findMileById(int id) throws DataAccessException {
         return mileRepository.findById(id);
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<Mile> findAllMiles()throws DataAccessException {
+    public Collection<MyMile> findAllMiles()throws DataAccessException {
     	return mileRepository.findAll();
     }
     

@@ -32,8 +32,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.rambird.miles.model.Category;
-import com.rambird.miles.model.Mile;
+import com.rambird.miles.model.MyMile;
 import com.rambird.miles.service.RambirdService;
 
 /**
@@ -43,7 +42,7 @@ import com.rambird.miles.service.RambirdService;
  * @author Michael Isvy
  */
 @Controller
-@SessionAttributes(types = Mile.class)
+@SessionAttributes(types = MyMile.class)
 public class MileController {
 
     private final RambirdService rambirdService;
@@ -61,26 +60,26 @@ public class MileController {
 
     @RequestMapping(value = "/miles/new", method = RequestMethod.GET)
     public String initCreationForm(Model model) {
-        Mile mile = new Mile();
-        model.addAttribute(mile);
+        MyMile myMile = new MyMile();
+        model.addAttribute(myMile);
         return "miles/addOrUpdateMile";
     }
 
-    @RequestMapping(value = "/mile/new", method = RequestMethod.POST)
-    public String processCreationForm(@Valid Mile mile, BindingResult result, SessionStatus status) {
+    @RequestMapping(value = "/miles/new", method = RequestMethod.POST)
+    public String processCreationForm(@Valid MyMile myMile, BindingResult result, SessionStatus status ) {
         if (result.hasErrors()) {
             return "miles/addOrUpdateMile";
         } else {
-            this.rambirdService.saveMile(mile);
+            this.rambirdService.saveMile(myMile);
             status.setComplete();
-            return "redirect:/miles/" + mile.getMileId();
+            return "redirect:/miles/" + myMile.getMileId();
         }
     }
     @RequestMapping(value = "/miles/mileList", method = RequestMethod.GET)
     public ModelAndView processFindForm( Model model) {
     	ModelAndView mav = new ModelAndView("miles/mileList");
     	// find all categories
-        Collection<Mile> results = this.rambirdService.findAllMiles();
+        Collection<MyMile> results = this.rambirdService.findAllMiles();
         if (results.size() > 1) {
             // multiple owners found
         	mav.addObject("selections", results);
@@ -104,17 +103,17 @@ public class MileController {
 
     @RequestMapping(value = "/miles/{mileId}/edit", method = RequestMethod.GET)
     public String initUpdateOwnerForm(@PathVariable("mileId") int mileId, Model model) {
-        Mile mile = this.rambirdService.findMileById(mileId);
-        model.addAttribute(mile);
+        MyMile myMile = this.rambirdService.findMileById(mileId);
+        model.addAttribute(myMile);
         return "miles/addOrUpdateMile";
     }
 
     @RequestMapping(value = "/miles/{mileId}/edit", method = RequestMethod.PUT)
-    public String processUpdateOwnerForm(@Valid Mile mile, BindingResult result, SessionStatus status) {
+    public String processUpdateOwnerForm(@Valid MyMile myMile, BindingResult result, SessionStatus status) {
         if (result.hasErrors()) {
             return "miles/addOrUpdateMile";
         } else {
-            this.rambirdService.saveMile(mile);
+            this.rambirdService.saveMile(myMile);
             status.setComplete();
             return "redirect:/miles/{mileId}";
         }

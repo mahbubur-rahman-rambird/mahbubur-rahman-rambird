@@ -35,7 +35,7 @@ import java.util.Collection;
 import org.springframework.dao.DataAccessException;
 
 import com.rambird.miles.model.BaseEntity;
-import com.rambird.miles.model.Mile;
+import com.rambird.miles.model.MyMile;
 
 /**
  * Repository class for <code>Owner</code> domain objects All method names are compliant with Spring Data naming
@@ -57,7 +57,7 @@ public interface MileRepository {
      * @throws org.springframework.dao.DataRetrievalFailureException
      *          if not found
      */
-	Mile findById(int id) throws DataAccessException;
+	MyMile findById(int id) throws DataAccessException;
 
 
     /**
@@ -66,8 +66,8 @@ public interface MileRepository {
      * @param owner the <code>Owner</code> to save
      * @see BaseEntity#isNew
      */
-    void save(Mile mile) throws DataAccessException;
+    void save(MyMile mile) throws DataAccessException;
     
-    Collection<Mile> findAll() throws DataAccessException;
+    Collection<MyMile> findAll() throws DataAccessException;
 
 }
