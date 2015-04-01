@@ -98,8 +98,10 @@ public class JdbcCatgRepositoryImpl implements MilesCatgRepository {
     @Override
     public Collection<Category> findAll() throws DataAccessException {
     	Map<String, Object> params = new HashMap<String, Object>();
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+    	params.put("userName", auth.getName());
     	List<Category> categories = this.namedParameterJdbcTemplate.query(
-                "SELECT catgid, catg, catg_label, user_name, home, catg_rank FROM category order by catgid desc",
+                "SELECT catgid, catg, catg_label, user_name, home, catg_rank FROM category where user_name= :userName  order by catg_rank",
                 params,
                 ParameterizedBeanPropertyRowMapper.newInstance(Category.class)
         );

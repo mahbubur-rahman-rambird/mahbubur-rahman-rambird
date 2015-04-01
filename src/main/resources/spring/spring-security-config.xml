@@ -10,6 +10,7 @@
 	<http auto-config="true">
 		<intercept-url pattern="/owners**" access="ROLE_ADMIN" />
 		<intercept-url pattern="/categories/**" access="ROLE_ADMIN" />
+		<intercept-url pattern="/miles/**" access="ROLE_ADMIN" />
  		<form-login 
 		login-page="/login" 
 	        default-target-url="/welcome" 

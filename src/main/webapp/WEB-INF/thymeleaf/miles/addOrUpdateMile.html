@@ -53,7 +53,7 @@
         <div class="control-group" th:classappend="${#fields.hasErrors('catg')} ? error">
             <label class="control-label">Category</label>
             <div class="controls">
-                <input type="text" th:field="*{catg}" />
+                <input th:each="c : ${categories}" th:field="*{catg}" type="radio" th:value="${c.catg}"><span th:text="${c.catgLabel}"/></input>
                 <span class="help-inline" th:errors="*{catg}">[error]</span>
             </div>
         </div>
@@ -68,12 +68,15 @@
     <div class="control-group" th:classappend="${#fields.hasErrors('priority')} ? error">
             <label class="control-label">Priority</label>
             <div class="controls">
-                <input type="text" th:field="*{priority}" />
+                <input type="radio" th:field="*{priority}" value="0N">Normal</input>
+                <input type="radio" th:field="*{priority}" value="1U">Urgent</input>
+                <input type="radio" th:field="*{priority}" value="2I">Important</input>
+                <input type="radio" th:field="*{priority}" value="3UI">Urgent and Import</input>
                 <span class="help-inline" th:errors="*{priority}">[error]</span>
             </div>
         </div>
 
-<!-- 
+
         <div class="control-group" th:classappend="${#fields.hasErrors('finishBy')} ? error">
             <label class="control-label">Finish by</label>
             <div class="controls">
@@ -81,7 +84,7 @@
                 <span class="help-inline" th:errors="*{finishBy}">[error]</span>
             </div>
         </div>
- -->    
+    
         <div class="form-actions">
             <button th:if="${myMile['new']}" type="submit">Add Mile</button>
             <button th:unless="${myMile['new']}" type="submit">Update mile</button>

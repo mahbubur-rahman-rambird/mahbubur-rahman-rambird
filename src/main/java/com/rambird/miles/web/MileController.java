@@ -16,10 +16,14 @@
 package com.rambird.miles.web;
 
 import java.util.Collection;
+import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,6 +36,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.rambird.miles.model.Category;
 import com.rambird.miles.model.MyMile;
 import com.rambird.miles.service.RambirdService;
 
@@ -60,7 +65,9 @@ public class MileController {
 
     @RequestMapping(value = "/miles/new", method = RequestMethod.GET)
     public String initCreationForm(Model model) {
-        MyMile myMile = new MyMile();
+    	Collection<Category> categories = this.rambirdService.findAllCategory();
+		model.addAttribute("categories", categories);
+    	MyMile myMile = new MyMile();
         model.addAttribute(myMile);
         return "miles/addOrUpdateMile";
     }
@@ -105,6 +112,7 @@ public class MileController {
     public String initUpdateOwnerForm(@PathVariable("mileId") int mileId, Model model) {
         MyMile myMile = this.rambirdService.findMileById(mileId);
         model.addAttribute(myMile);
+        
         return "miles/addOrUpdateMile";
     }
 
