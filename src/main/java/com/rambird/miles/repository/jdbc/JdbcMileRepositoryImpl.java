@@ -121,7 +121,7 @@ public class JdbcMileRepositoryImpl implements MileRepository {
             mile.setMileId(newKey.intValue());
         } else {
             this.namedParameterJdbcTemplate.update(
-                    "UPDATE mymiles SET catg=:catg, milestone=:milestone, home=:home, user_name=:userName WHERE mileid=:mileId",
+                    "UPDATE mymiles SET catg=:catg, milestone=:milestone, user_name=:userName WHERE mileid=:mileId",
                     parameterSource);
         }
     }

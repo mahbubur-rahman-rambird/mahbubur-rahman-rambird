@@ -181,6 +181,9 @@ public class MyMile {
 
 
 	public String getPriority() {
+		if (priority == null){
+			priority = "3UI";
+		}
 		return priority;
 	}
 

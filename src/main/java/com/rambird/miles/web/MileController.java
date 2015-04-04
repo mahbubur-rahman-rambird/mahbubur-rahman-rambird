@@ -68,6 +68,10 @@ public class MileController {
     	Collection<Category> categories = this.rambirdService.findAllCategory();
 		model.addAttribute("categories", categories);
     	MyMile myMile = new MyMile();
+    	// Default priority
+    	myMile.setPriority("3UI");
+    	// Default category
+    	myMile.setCatg(categories.iterator().next().getCatg());
         model.addAttribute(myMile);
         return "miles/addOrUpdateMile";
     }
@@ -112,6 +116,8 @@ public class MileController {
     public String initUpdateOwnerForm(@PathVariable("mileId") int mileId, Model model) {
         MyMile myMile = this.rambirdService.findMileById(mileId);
         model.addAttribute(myMile);
+     	Collection<Category> categories = this.rambirdService.findAllCategory();
+    	model.addAttribute("categories", categories);
         
         return "miles/addOrUpdateMile";
     }

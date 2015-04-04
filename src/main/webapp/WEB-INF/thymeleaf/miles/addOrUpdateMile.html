@@ -71,7 +71,7 @@
                 <input type="radio" th:field="*{priority}" value="0N">Normal</input>
                 <input type="radio" th:field="*{priority}" value="1U">Urgent</input>
                 <input type="radio" th:field="*{priority}" value="2I">Important</input>
-                <input type="radio" th:field="*{priority}" value="3UI">Urgent and Import</input>
+                <input type="radio" th:field="*{priority}" value="3UI" th:checked="checked">Urgent and Import</input>
                 <span class="help-inline" th:errors="*{priority}">[error]</span>
             </div>
         </div>
