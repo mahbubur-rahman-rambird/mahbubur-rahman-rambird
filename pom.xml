@@ -348,6 +348,11 @@
             <artifactId>jquery-ui</artifactId>
             <version>${webjars-jquery-ui.version}</version>
         </dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jQuery-Timepicker-Addon</artifactId>
+			<version>1.5.0</version>
+		</dependency>        
         <dependency>
             <groupId>org.webjars</groupId>
             <artifactId>jquery</artifactId>

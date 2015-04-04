@@ -80,7 +80,25 @@
         <div class="control-group" th:classappend="${#fields.hasErrors('finishBy')} ? error">
             <label class="control-label">Finish by</label>
             <div class="controls">
-                <input type="text" th:field="*{finishBy}" />
+	             <div class="form-group">
+	                <div class='input-group date' id='datetimepicker3'>
+	                    <input type='text' class="form-control" id="datepicker" th:field="*{finishBy}" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-time"></span>
+	                    </span>
+	                </div>
+	            </div>
+ <script>
+  $(function() {
+    $( "#datepicker" ).datetimepicker({
+    	  dateFormat: 'dd-M-yy',
+    	  timeFormat: 'HH:mm',
+    	  separator: ' ',
+    	  minDate: new Date()
+    	});
+  });
+  </script>
+              
                 <span class="help-inline" th:errors="*{finishBy}">[error]</span>
             </div>
         </div>
