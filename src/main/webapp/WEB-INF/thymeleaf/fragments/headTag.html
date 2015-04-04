@@ -9,7 +9,7 @@ PetClinic :: a Spring Framework demonstration
 
 <head th:fragment="headTag">
 
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <title>Rambird :: you forget, I will remember!</title>
 
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.min.css"
@@ -17,13 +17,16 @@ PetClinic :: a Spring Framework demonstration
     <link href="../../../resources/css/petclinic.css"
           th:href="@{/resources/css/petclinic.css}" rel="stylesheet" />
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
-            th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
+    <script  src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"
+             th:src="@{/webjars/jquery/1.9.0/jquery.js}"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"
             th:src="@{/webjars/jquery-ui/1.9.2/js/jquery-ui-1.9.2.custom.js}"></script>
-    
+   <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui-timepicker-addon.js"
+            th:src="@{/webjars/jQuery-Timepicker-Addon/1.5.0/jquery-ui-timepicker-addon.js}"></script>    
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui.css"
           th:href="@{/webjars/jquery-ui/1.9.2/css/smoothness/jquery-ui-1.9.2.custom.css}" rel="stylesheet" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/smoothness/jquery-ui-timepicker-addon.css"
+          th:href="@{/webjars/jQuery-Timepicker-Addon/1.5.0/jquery-ui-timepicker-addon.css}" rel="stylesheet" />
     
 </head>
 
