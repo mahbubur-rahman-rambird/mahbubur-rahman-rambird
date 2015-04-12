@@ -33,11 +33,13 @@ import org.springframework.orm.ObjectRetrievalFailureException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Repository;
+import org.springframework.util.StringUtils;
 
 import com.rambird.miles.model.Category;
 import com.rambird.miles.model.MyMile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
+import com.rambird.miles.model.SearchMiles;
 import com.rambird.miles.model.Visit;
 import com.rambird.miles.repository.MileRepository;
 import com.rambird.miles.repository.OwnerRepository;
@@ -98,10 +100,15 @@ public class JdbcMileRepositoryImpl implements MileRepository {
      * already loaded.
      */
     @Override
-    public Collection<MyMile> findAll() throws DataAccessException {
+    public Collection<MyMile> findAll(SearchMiles searchMiles) throws DataAccessException {
+    	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
     	Map<String, Object> params = new HashMap<String, Object>();
+    	params.put("userName", auth.getName());
+    	String searchIndexFilter = StringUtils.isEmpty(searchMiles.getSearchText())? "": 
+    		" and search_index @@ to_tsquery('" + searchMiles.getSearchText() + "') ";
+    	
     	List<MyMile> miles = this.namedParameterJdbcTemplate.query(
-                SELECT_QUERY + " ",
+                SELECT_QUERY + " where user_name=:userName " + searchIndexFilter,
                 params,
                 ParameterizedBeanPropertyRowMapper.newInstance(MyMile.class)
         );

@@ -36,6 +36,7 @@ import org.springframework.dao.DataAccessException;
 
 import com.rambird.miles.model.BaseEntity;
 import com.rambird.miles.model.MyMile;
+import com.rambird.miles.model.SearchMiles;
 
 /**
  * Repository class for <code>Owner</code> domain objects All method names are compliant with Spring Data naming
@@ -68,6 +69,6 @@ public interface MileRepository {
      */
     void save(MyMile mile) throws DataAccessException;
     
-    Collection<MyMile> findAll() throws DataAccessException;
+    Collection<MyMile> findAll(SearchMiles searchMiles) throws DataAccessException;
 
 }

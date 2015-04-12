@@ -16,14 +16,10 @@
 package com.rambird.miles.web;
 
 import java.util.Collection;
-import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -38,6 +34,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.rambird.miles.model.Category;
 import com.rambird.miles.model.MyMile;
+import com.rambird.miles.model.SearchMiles;
 import com.rambird.miles.service.RambirdService;
 
 /**
@@ -87,10 +84,12 @@ public class MileController {
         }
     }
     @RequestMapping(value = "/miles/mileList", method = RequestMethod.GET)
-    public ModelAndView processFindForm( Model model) {
+    public ModelAndView processDefaultList(Model model) {
+    	SearchMiles searchMiles = new SearchMiles();
+    	model.addAttribute("searchMiles", searchMiles);
     	ModelAndView mav = new ModelAndView("miles/mileList");
     	// find all categories
-        Collection<MyMile> results = this.rambirdService.findAllMiles();
+        Collection<MyMile> results = this.rambirdService.findAllMiles(searchMiles);
         if (results.size() > 1) {
             // multiple owners found
         	mav.addObject("selections", results);
@@ -98,6 +97,17 @@ public class MileController {
         return mav;
 
     }
+    @RequestMapping(value = "/miles/find", method = RequestMethod.GET)
+    public ModelAndView processFindForm(SearchMiles searchMiles, Model model) {
+    	ModelAndView mav = new ModelAndView("miles/mileList");
+    	// find all categories
+        Collection<MyMile> results = this.rambirdService.findAllMiles(searchMiles);
+        if (results.size() > 1) {
+            // multiple owners found
+        	mav.addObject("selections", results);
+        }
+        return mav;
+    }   
 
     /**
      * Custom handler for displaying an owner.

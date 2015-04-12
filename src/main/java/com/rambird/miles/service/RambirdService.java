@@ -24,6 +24,7 @@ import com.rambird.miles.model.MyMile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
 import com.rambird.miles.model.PetType;
+import com.rambird.miles.model.SearchMiles;
 import com.rambird.miles.model.User;
 import com.rambird.miles.model.Vet;
 import com.rambird.miles.model.Visit;
@@ -60,7 +61,7 @@ public interface RambirdService {
 
     public MyMile findMileById(int id) throws DataAccessException;
     
-    public Collection<MyMile> findAllMiles() throws DataAccessException;
+    public Collection<MyMile> findAllMiles(SearchMiles searchMiles) throws DataAccessException;
     
     public Collection<Owner> findOwnerByLastName(String lastName) throws DataAccessException;
     

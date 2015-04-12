@@ -28,6 +28,7 @@ import com.rambird.miles.model.MyMile;
 import com.rambird.miles.model.Owner;
 import com.rambird.miles.model.Pet;
 import com.rambird.miles.model.PetType;
+import com.rambird.miles.model.SearchMiles;
 import com.rambird.miles.model.User;
 import com.rambird.miles.model.Vet;
 import com.rambird.miles.model.Visit;
@@ -133,8 +134,8 @@ public class RambirdServiceImpl implements RambirdService {
 
     @Override
     @Transactional(readOnly = true)
-    public Collection<MyMile> findAllMiles()throws DataAccessException {
-    	return mileRepository.findAll();
+    public Collection<MyMile> findAllMiles(SearchMiles searchMiles)throws DataAccessException {
+    	return mileRepository.findAll(searchMiles);
     }
     
     

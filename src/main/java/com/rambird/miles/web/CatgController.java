@@ -81,7 +81,7 @@ public class CatgController {
     	ModelAndView mav = new ModelAndView("categories/catgList");
     	// find all categories
         Collection<Category> results = this.rambirdService.findAllCategory();
-        if (results.size() > 1) {
+        if (results.size() >= 1) {
             // multiple owners found
         	mav.addObject("selections", results);
         }

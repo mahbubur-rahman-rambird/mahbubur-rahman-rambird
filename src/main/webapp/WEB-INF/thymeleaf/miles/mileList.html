@@ -70,8 +70,16 @@
     </div>
     
 
-    <h2>Category</h2>
-
+    <h2>Miles</h2>
+   <form th:object="${searchMiles}" action="mileList.html" th:action="@{/miles/find}" method="get" class="form-horizontal"
+               id="search-owner-form">
+        <fieldset>
+            <div class="form-actions" id="searchText">
+                <input type="text" th:field="*{searchText}" size="30" maxlength="80"/>
+                <button type="submit">Search</button>
+            </div>
+        </fieldset>
+    </form>
     <table class="table table-striped">
         <thead>
             <tr>
