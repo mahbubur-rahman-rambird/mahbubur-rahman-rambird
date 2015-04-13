@@ -24,7 +24,7 @@
 
 <body>
 <div class="container">
-    <div th:include="fragments/bodyHeader" th:remove="tag">
+    <div th:replace="fragments/bodyHeader :: bodyHeader">
     
         <img th:src="@{/resources/images/banner-graphic.png}" 
              src="../../../resources/images/banner-graphic.png"/>

@@ -33,7 +33,7 @@
 
 <div class="container">
 
-    <div th:include="fragments/bodyHeader" th:remove="tag">
+    <div th:replace="fragments/bodyHeader :: bodyHeader">
     
         <!-- =========================================================================== -->
         <!-- This div is only used for static prototyping purposes (natural templates)   -->
