@@ -23,6 +23,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.core.style.ToStringCreator;
@@ -50,6 +51,7 @@ public class MyMile {
 
     @Column(name = "milestone")
     @NotEmpty
+    @NotNull
     private String milestone;
 
     @Column(name = "comments")
@@ -62,6 +64,7 @@ public class MyMile {
     
     @Column(name = "finish_by")
     @DateTimeFormat (pattern="dd-MMM-YYYY HH:mm")
+    @NotNull
     private Date finishBy;
     
     

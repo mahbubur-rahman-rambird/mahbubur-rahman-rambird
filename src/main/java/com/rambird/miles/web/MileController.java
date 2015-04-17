@@ -28,9 +28,11 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.multiaction.NoSuchRequestHandlingMethodException;
 
 import com.rambird.miles.model.Category;
 import com.rambird.miles.model.MyMile;
@@ -74,13 +76,13 @@ public class MileController {
     }
 
     @RequestMapping(value = "/miles/new", method = RequestMethod.POST)
-    public String processCreationForm(@Valid MyMile myMile, BindingResult result, SessionStatus status ) {
+    public @ResponseBody String processCreationForm(@Valid MyMile myMile, BindingResult result, SessionStatus status ) {
         if (result.hasErrors()) {
-            return "miles/addOrUpdateMile";
+            return "error";
         } else {
             this.rambirdService.saveMile(myMile);
             status.setComplete();
-            return "redirect:/miles/" + myMile.getMileId();
+            return "success";
         }
     }
     @RequestMapping(value = "/miles/mileList", method = RequestMethod.GET)
@@ -94,6 +96,14 @@ public class MileController {
             // multiple owners found
         	mav.addObject("selections", results);
         }
+        Collection<Category> categories = this.rambirdService.findAllCategory();
+		model.addAttribute("categories", categories);
+    	MyMile myMile = new MyMile();
+    	// Default priority
+    	myMile.setPriority("3UI");
+    	// Default category
+    	myMile.setCatg(categories.iterator().next().getCatg());
+        model.addAttribute(myMile);
         return mav;
 
     }
@@ -142,5 +152,18 @@ public class MileController {
             return "redirect:/miles/{mileId}";
         }
     }   
+    
+    @RequestMapping(value = "/miles/ajaxsave", method = RequestMethod.POST)
+    public @ResponseBody
+    String saveMileOnAjax(@Valid MyMile myMile, BindingResult result) throws NoSuchRequestHandlingMethodException{
+        
+    	if (result.hasErrors()) {
+            throw new NoSuchRequestHandlingMethodException("Missing data", this.getClass());
+        } else {
+            this.rambirdService.saveMile(myMile);
+            return "success";
+        }
+    }
+
    
 }

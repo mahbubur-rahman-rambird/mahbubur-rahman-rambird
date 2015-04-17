@@ -120,7 +120,95 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Hello world</p>
+          
+          
+          
+          <h2>
+        <span th::if="${myMile['new']}" th:remove="tag">New </span> Mile
+    </h2>
+    <form th:object="${myMile}" class="form-horizontal" id="add-mile-form">
+        <div class="control-group" th:classappend="${#fields.hasErrors('catg')} ? error">
+            <label class="control-label">Category</label>
+            <div class="controls">
+                <input th:each="c : ${categories}" th:field="*{catg}" type="radio" th:value="${c.catg}"><span th:text="${c.catgLabel}"/></input>
+                <span class="help-inline" th:errors="*{catg}">[error]</span>
+            </div>
+        </div>
+    
+        <div class="control-group" th:classappend="${#fields.hasErrors('milestone')} ? error">
+            <label class="control-label">Milestone</label>
+            <div class="controls">
+                <input type="text" th:field="*{milestone}" />
+                <span class="help-inline" th:errors="*{milestone}">[error]</span>
+            </div>
+        </div>
+    <div class="control-group" th:classappend="${#fields.hasErrors('priority')} ? error">
+            <label class="control-label">Priority</label>
+            <div class="controls">
+                <input type="radio" th:field="*{priority}" value="0N">Normal</input>
+                <input type="radio" th:field="*{priority}" value="1U">Urgent</input>
+                <input type="radio" th:field="*{priority}" value="2I">Important</input>
+                <input type="radio" th:field="*{priority}" value="3UI" th:checked="checked">Urgent and Import</input>
+                <span class="help-inline" th:errors="*{priority}">[error]</span>
+            </div>
+        </div>
+
+
+        <div class="control-group" th:classappend="${#fields.hasErrors('finishBy')} ? error">
+            <label class="control-label">Finish by</label>
+            <div class="controls">
+	             <div class="form-group">
+	                <div class='input-group date' id='datetimepicker3'>
+	                    <input type='text' class="form-control" id="datepicker" th:field="*{finishBy}" />
+	                    <span class="input-group-addon">
+	                        <span class="glyphicon glyphicon-time"></span>
+	                    </span>
+	                </div>
+	            </div>
+ <script>
+  $(function() {
+    $( "#datepicker" ).datetimepicker({
+    	  dateFormat: 'dd-M-yy',
+    	  timeFormat: 'HH:mm',
+    	  separator: ' ',
+    	  minDate: new Date()
+    	});
+  });
+  </script>
+              
+                <span class="help-inline" th:errors="*{finishBy}">[error]</span>
+            </div>
+        </div>
+    
+        <div class="form-actions">
+            <button th:if="${myMile['new']}" type="submit" id="mileAddSubmit">Add Mile</button>
+            <button th:unless="${myMile['new']}" type="submit">Update mile</button>
+        </div>
+    </form>
+          <script>
+ $(function() {
+//twitter bootstrap script
+	$("button#mileAddSubmit").click(function(){
+		$.ajax({
+            url : 'ajaxsave.html',
+            method: 'POST',
+            data: $("form#add-mile-form").serialize(),
+            success : function(data) {
+            	$('#myModal').modal('hide');
+                
+            },
+            error: function(data){
+            	alert ("Failure: " + data);
+            	$("form#add-mile-form").load();
+            }
+        });
+		return false;
+	});
+		
+});
+ 
+</script>
+          
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
