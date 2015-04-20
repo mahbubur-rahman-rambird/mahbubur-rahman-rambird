@@ -76,7 +76,9 @@
         <fieldset>
             <div class="form-actions" id="searchText">
                 <input type="text" th:field="*{searchText}" size="30" maxlength="80"/>
-                <button type="submit">Search</button>
+                <button type="submit" class="btn btn-info">Search</button>
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add a Mile</button>
+                
             </div>
         </fieldset>
     </form>
@@ -103,11 +105,11 @@
         </tbody>
     </table>    
    <div class="form-actions">
-    	<a th:href="@{'new'}" href="../miles/addOrUpdateMile.html"  class="btn btn-success">Add a Mile</a>
+    	<button type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Add a Mile</button>
    </div>  	
    
     <!-- Trigger the modal with a button -->
-  <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+  
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -117,7 +119,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
+          <h4 class="modal-title">Add a new mile</h4>
         </div>
         <div class="modal-body">
           
@@ -138,7 +140,7 @@
         <div class="control-group" th:classappend="${#fields.hasErrors('milestone')} ? error">
             <label class="control-label">Milestone</label>
             <div class="controls">
-                <input type="text" th:field="*{milestone}" />
+                <input type="text" th:field="*{milestone}"/>
                 <span class="help-inline" th:errors="*{milestone}">[error]</span>
             </div>
         </div>
@@ -185,24 +187,51 @@
             <button th:unless="${myMile['new']}" type="submit">Update mile</button>
         </div>
     </form>
-          <script>
+<script>
+ $(document).ready(function() {
+	 $("#add-mile-form").validate({
+		errorClass:"requiredError",
+		rules:{
+			milestone:"required",
+	        finishBy:"required"
+		},
+		messages:{
+			milestone:"",
+			finishBy: ""
+		},
+		submitHandler: function(form) {
+			$.ajax({
+	            url : 'ajaxsave.html',
+	            method: 'POST',
+	            data: $("form#add-mile-form").serialize(),
+	            success : function(data) {
+	            	$('#myModal').modal('hide');
+	                
+	            },
+	            error: function(data){
+	            	alert ("Failure: " + data);
+	            	$("form#add-mile-form").load();
+	            },
+	            complete:function(XMLHttpRequest, status) {     
+	            	window.location.reload();
+	            }
+	        });
+		}
+	});
+});
  $(function() {
-//twitter bootstrap script
-	$("button#mileAddSubmit").click(function(){
-		$.ajax({
-            url : 'ajaxsave.html',
-            method: 'POST',
-            data: $("form#add-mile-form").serialize(),
-            success : function(data) {
-            	$('#myModal').modal('hide');
-                
-            },
-            error: function(data){
-            	alert ("Failure: " + data);
-            	$("form#add-mile-form").load();
-            }
-        });
-		return false;
+	//twitter bootstrap script
+	//
+	// Reset the modal and remove the error
+	$('.modal').on('hidden.bs.modal', function(){
+	    $(this).find('form')[0].reset();
+	    $(".requiredError").removeClass("requiredError");
+	});
+	
+	$("button#mileAddSubmit").click(function(e){
+		 e.preventDefault(); 
+		 $("#add-mile-form").submit();
+		 return false;
 	});
 		
 });

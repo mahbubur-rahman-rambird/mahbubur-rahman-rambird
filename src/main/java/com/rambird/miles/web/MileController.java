@@ -156,7 +156,6 @@ public class MileController {
     @RequestMapping(value = "/miles/ajaxsave", method = RequestMethod.POST)
     public @ResponseBody
     String saveMileOnAjax(@Valid MyMile myMile, BindingResult result) throws NoSuchRequestHandlingMethodException{
-        
     	if (result.hasErrors()) {
             throw new NoSuchRequestHandlingMethodException("Missing data", this.getClass());
         } else {
