@@ -97,11 +97,19 @@ public class MileController {
         	mav.addObject("selections", results);
         }
         Collection<Category> categories = this.rambirdService.findAllCategory();
-		model.addAttribute("categories", categories);
-    	MyMile myMile = new MyMile();
+		if (categories.isEmpty()){
+			Category c = new Category();
+			c.setCatg("Sumon");
+			c.setCatgLabel("SUMON");
+			categories.add(c);
+		}
+        model.addAttribute("categories", categories);
+    	
+		MyMile myMile = new MyMile();
     	// Default priority
     	myMile.setPriority("3UI");
     	// Default category
+    	
     	myMile.setCatg(categories.iterator().next().getCatg());
         model.addAttribute(myMile);
         return mav;
