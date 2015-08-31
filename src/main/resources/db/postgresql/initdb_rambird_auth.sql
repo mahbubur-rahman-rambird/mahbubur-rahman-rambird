@@ -1,3 +1,10 @@
+-- psql -U pgadmin template1
+-- CREATE USER itxxxx CREATEDB ENCRYPTED PASSWORD 'itxxxx';
+
+--createdb -O rambird  -T template0 rambird-auth
+
+-- ALTER ROLE rambird WITH LOGIN;
+
 -- Table: myoath
 
 -- DROP TABLE myoath;
