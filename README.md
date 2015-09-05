@@ -1,0 +1,1 @@
+It's a self management tool for any purpose
